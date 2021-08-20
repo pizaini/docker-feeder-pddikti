@@ -1,7 +1,7 @@
 version: "3.9"
 services:
   feeder_pddikti:
-    image: feeder-pddikti
+    image: pizaini/feeder-pddikti:4.1
     ports:
       - "8082:8082"
       - "54321:54321"

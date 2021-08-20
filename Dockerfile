@@ -50,23 +50,29 @@ WORKDIR /feeder
 RUN unzip Feeder_3.2_Amd64_Debian.zip
 RUN chmod +x ./INSTALL && ./INSTALL
 
-## INSTALL PATCH 3.3
+## PATCH 3.3
 RUN unzip Patch_3.3_Amd64_Linux.zip
-RUN chmod +x ./UPDATE_PATCH.3.3 && ./UPDATE_PATCH.3.3
+RUN chmod +x ./UPDATE_PATCH.3.3
+#RUN ./UPDATE_PATCH.3.3
 
-## INSTALL PATCH 3.4
+## PATCH 3.4
 RUN unzip Patch_3.4_Amd64_Linux.zip
-RUN chmod +x ./UPDATE_PATCH.3.4 && ./UPDATE_PATCH.3.4
+RUN chmod +x ./UPDATE_PATCH.3.4
+#RUN ./UPDATE_PATCH.3.4
 
-## INSTALL PATCH 4.0
+## PATCH 4.0
 RUN unzip Patch_4.0_Amd64_Linux.zip
-RUN chmod +x ./UPDATE_PATCH.4.0 && ./UPDATE_PATCH.4.0
+RUN chmod +x ./UPDATE_PATCH.4.0
+#RUN ./UPDATE_PATCH.4.0
 
-## INSTALL PATCH 4.1
+## PATCH 4.1
 RUN unzip Patch_4.1_Amd64_Linux.zip
-RUN chmod +x ./UPDATE_PATCH.4.1 && ./UPDATE_PATCH.4.1
+RUN chmod +x ./UPDATE_PATCH.4.1
+#RUN ./UPDATE_PATCH.4.1
 
+#Web port
 EXPOSE 8082
+#Database port. Next, kita akan  edit listening port postgres agar dapat diakses dari luar (non-localhost)
 EXPOSE 54321
 
 WORKDIR /var/www/html
