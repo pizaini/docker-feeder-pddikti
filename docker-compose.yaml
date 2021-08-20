@@ -7,4 +7,4 @@ services:
       - "54321:54321"
     volumes:
       - "/home/pizaini/docker-volume/feeder-prefill:/home/prefill"
-      - "/home/pizaini/docker-volume/feeder-database:/var/lib/postgresql"
+#      - "/home/pizaini/docker-volume/feeder-database:/var/lib/postgresql"

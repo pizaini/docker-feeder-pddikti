@@ -18,7 +18,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@v3
         with:
-          images: pizaini/feeder-pddikti:4.1
+          images: pizaini/feeder-pddikti
           tags: |
             type=semver,pattern={{version}}
             type=semver,pattern={{major}}.{{minor}}
