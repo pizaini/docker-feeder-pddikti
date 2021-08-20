@@ -52,7 +52,6 @@ COPY php-apache/conf/000-default.conf /etc/apache2/sites-available/000-default.c
 COPY php-apache/conf/default-ssl.conf /etc/apache2/sites-available/default-ssl.conf
 
 #Enable necessary mods
-RUN ln -s /etc/apache2/mods-available/rewrite.load /etc/apache2/mods-enabled/rewrite.load
 RUN ln -s /etc/apache2/mods-available/headers.load /etc/apache2/mods-enabled/headers.load
 RUN ln -s /etc/apache2/mods-available/ssl.load /etc/apache2/mods-enabled/ssl.load
 
