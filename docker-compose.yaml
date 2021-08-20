@@ -4,7 +4,6 @@ services:
     image: pizaini/feeder-pddikti:4.1
     ports:
       - "8082:8082"
-      - "54321:54321"
     volumes:
       - "/home/pizaini/docker-volume/feeder-prefill:/home/prefill"
 #      - "/home/pizaini/docker-volume/feeder-database:/var/lib/postgresql"

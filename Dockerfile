@@ -45,6 +45,15 @@ RUN mkdir /feeder
 COPY ./feeder-apps/* /feeder
 COPY postgresql/postgresql.zip /feeder/postgresql.zip
 
+# Apache configs
+COPY ssl/localhost.crt /etc/apache2/ssl/ssl.crt
+COPY ssl/localhost.key /etc/apache2/ssl/ssl.key
+COPY php-apache/conf/000-default.conf /etc/apache2/sites-available/000-default.conf
+COPY php-apache/conf/default-ssl.conf /etc/apache2/sites-available/default-ssl.conf
+
+#Enable SSL
+RUN a2enmod ssl
+
 ## INSTALL FEEDER 3.2
 WORKDIR /feeder
 RUN unzip Feeder_3.2_Amd64_Debian.zip
@@ -70,8 +79,10 @@ RUN unzip Patch_4.1_Amd64_Linux.zip
 RUN chmod +x ./UPDATE_PATCH.4.1
 RUN ./UPDATE_PATCH.4.1
 
-#Web port
+#Web ports
+EXPOSE 80
 EXPOSE 8082
+EXPOSE 443
 #Database port. Next, kita akan edit listening port postgres agar dapat diakses dari luar (non-localhost)
 EXPOSE 54321
 
