@@ -51,8 +51,10 @@ COPY ssl/localhost.key /etc/apache2/ssl/ssl.key
 COPY php-apache/conf/000-default.conf /etc/apache2/sites-available/000-default.conf
 COPY php-apache/conf/default-ssl.conf /etc/apache2/sites-available/default-ssl.conf
 
-#Enable SSL
-RUN a2enmod ssl
+#Enable necessary mods
+RUN ln -s /etc/apache2/mods-available/rewrite.load /etc/apache2/mods-enabled/rewrite.load
+RUN ln -s /etc/apache2/mods-available/headers.load /etc/apache2/mods-enabled/headers.load
+RUN ln -s /etc/apache2/mods-available/ssl.load /etc/apache2/mods-enabled/ssl.load
 
 ## INSTALL FEEDER 3.2
 WORKDIR /feeder
