@@ -45,20 +45,11 @@ RUN mkdir /feeder
 COPY ./feeder-apps/* /feeder
 COPY postgresql/postgresql.zip /feeder/postgresql.zip
 
-# Apache configs
-COPY ssl/localhost.crt /etc/apache2/ssl/ssl.crt
-COPY ssl/localhost.key /etc/apache2/ssl/ssl.key
-COPY php-apache/conf/000-default.conf /etc/apache2/sites-available/000-default.conf
-COPY php-apache/conf/default-ssl.conf /etc/apache2/sites-available/default-ssl.conf
-
-#Enable necessary mods
-RUN ln -s /etc/apache2/mods-available/headers.load /etc/apache2/mods-enabled/headers.load
-RUN ln -s /etc/apache2/mods-available/ssl.load /etc/apache2/mods-enabled/ssl.load
-
 ## INSTALL FEEDER 3.2
 WORKDIR /feeder
 RUN unzip Feeder_3.2_Amd64_Debian.zip
-RUN chmod +x ./INSTALL && ./INSTALL
+RUN chmod +x ./INSTALL
+RUN ./INSTALL
 
 ## PATCH 3.3
 RUN unzip Patch_3.3_Amd64_Linux.zip
@@ -79,6 +70,16 @@ RUN ./UPDATE_PATCH.4.0
 RUN unzip Patch_4.1_Amd64_Linux.zip
 RUN chmod +x ./UPDATE_PATCH.4.1
 RUN ./UPDATE_PATCH.4.1
+
+# Apache configs
+COPY ssl/localhost.crt /etc/apache2/ssl/ssl.crt
+COPY ssl/localhost.key /etc/apache2/ssl/ssl.key
+COPY php-apache/conf/000-default.conf /etc/apache2/sites-available/000-default.conf
+COPY php-apache/conf/default-ssl.conf /etc/apache2/sites-available/default-ssl.conf
+
+#Enable necessary mods
+RUN a2enmod ssl
+RUN a2enmod headers
 
 #Web ports
 EXPOSE 80

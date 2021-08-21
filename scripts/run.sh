@@ -8,9 +8,11 @@ if [ "$(ls -A /var/lib/postgresql)" ]
 fi
 
 #change directory owner
+echo "Change directory owner..."
 chown www-data:www-data -R /home/prefill
 chown postgres:postgres -R /var/lib/postgresql
 
 #start services
+echo "Start services..."
 /etc/init.d/postgresql start
-apache2 -D FOREGROUND
+apachectl -D FOREGROUND
