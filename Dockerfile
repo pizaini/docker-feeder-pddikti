@@ -27,7 +27,8 @@ RUN apt-get update && apt-get install -y -q --no-install-recommends \
         libfreetype6 \
         libfontconfig1 \
         libgd3 \
-        libxml2
+        libxml2 \
+        supervisor
 
 RUN locale-gen && localedef -i en_US -f UTF-8 en_US.UTF-8
 #Apache environments
@@ -54,22 +55,19 @@ RUN ./INSTALL
 ## PATCH 3.3
 RUN unzip Patch_3.3_Amd64_Linux.zip
 RUN chmod +x ./UPDATE_PATCH.3.3
-RUN #./UPDATE_PATCH.3.3
 
 ## PATCH 3.4
 RUN unzip Patch_3.4_Amd64_Linux.zip
 RUN chmod +x ./UPDATE_PATCH.3.4
-RUN #./UPDATE_PATCH.3.4
 
 ## PATCH 4.0
 RUN unzip Patch_4.0_Amd64_Linux.zip
 RUN chmod +x ./UPDATE_PATCH.4.0
-RUN #./UPDATE_PATCH.4.0
 
 ## PATCH 4.1
 RUN unzip Patch_4.1_Amd64_Linux.zip
 RUN chmod +x ./UPDATE_PATCH.4.1
-RUN #./UPDATE_PATCH.4.1
+
 #
 ## Apache configs
 COPY ssl/localhost.crt /etc/apache2/ssl/ssl.crt
@@ -81,6 +79,9 @@ RUN a2enmod ssl
 RUN a2enmod headers
 RUN a2enmod rewrite
 RUN a2ensite default-ssl
+
+#Config supervisord
+COPY scripts/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
 #Web ports: http, https and postgresql
 EXPOSE 80 8082 443 54321
