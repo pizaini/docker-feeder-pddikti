@@ -9,3 +9,6 @@ a2enmod ssl
 a2enmod headers
 a2enmod rewrite
 a2ensite default-ssl
+
+#echo default server name
+echo "ServerName localhost" >> /etc/apache2/apache2.conf

@@ -29,6 +29,7 @@ RUN apt-get update && apt-get install -y -q --no-install-recommends \
             libgd3 \
             libxml2 \
             supervisor
+
 RUN locale-gen && localedef -i en_US -f UTF-8 en_US.UTF-8
 #Apache environments
 ENV APACHE_RUN_DIR /var/run/apache2
@@ -38,40 +39,47 @@ ENV APACHE_RUN_GROUP www-data
 ENV APACHE_LOG_DIR /var/www
 
 COPY scripts/run.sh /run.sh
-#COPY scripts/install.sh /install.sh
+COPY scripts/restore.sh /restore.sh
 COPY scripts/ssl.sh /ssl.sh
 
 RUN chmod +x /run.sh
 RUN chmod +x /ssl.sh
+RUN chmod +x /restore.sh
 
 # COPY INSTALLER
 RUN mkdir /feeder
 COPY ./feeder-apps/* /feeder
-COPY data/postgresql.zip /feeder/postgresql.zip
-COPY data/html.zip /feeder/html.zip
+#COPY data/postgresql.zip /feeder/postgresql.zip
+#COPY data/html.zip /feeder/html.zip
+#COPY data/psql_etc.zip /feeder/psql_etc.zip
 
 WORKDIR /feeder
 ## INSTALL FEEDER 3.2
-RUN unzip Feeder_3.2_Amd64_Debian.zip
+RUN unzip -qq Feeder_3.2_Amd64_Debian.zip
 RUN chmod +x ./INSTALL
 
 RUN ./INSTALL
 RUN /bin/sh -c "/ssl.sh"
 
+##BACKUP
+RUN zip -r -q html.zip /var/www/html/
+RUN zip -r -q postgresql_data.zip /var/lib/postgresql/
+RUN zip -r -q postgresql_config.zip /etc/postgresql/
+
 ## PATCH 3.3
-RUN unzip Patch_3.3_Amd64_Linux.zip
+RUN unzip -qq Patch_3.3_Amd64_Linux.zip
 RUN chmod +x ./UPDATE_PATCH.3.3
 
 ## PATCH 3.4
-RUN unzip Patch_3.4_Amd64_Linux.zip
+RUN unzip -qq Patch_3.4_Amd64_Linux.zip
 RUN chmod +x ./UPDATE_PATCH.3.4
 
 ## PATCH 4.0
-RUN unzip Patch_4.0_Amd64_Linux.zip
+RUN unzip -qq Patch_4.0_Amd64_Linux.zip
 RUN chmod +x ./UPDATE_PATCH.4.0
 
 ## PATCH 4.1
-RUN unzip Patch_4.1_Amd64_Linux.zip
+RUN unzip -qq Patch_4.1_Amd64_Linux.zip
 RUN chmod +x ./UPDATE_PATCH.4.1
 
 ## Apache configs
