@@ -1,7 +1,8 @@
 version: "3.9"
 services:
   feeder_pddikti:
-    image: pizaini/feeder-pddikti:4.1.11
+    image: pizaini/feeder-pddikti:4.1
+    container_name: feeder_pddikti
     ports:
       - "9443:443"
     volumes:
