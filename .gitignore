@@ -1,7 +1,5 @@
-app
 assets
 helper
-nginx
 pgsql
 # Compiled class file
 *.class
