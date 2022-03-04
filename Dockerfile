@@ -21,5 +21,6 @@ RUN mkdir -p /var/log/supervisor
 RUN chown www:www /var/log/supervisor
 
 # USER www
+RUN chmod +x /app/server-linux
 
 CMD ["/usr/bin/supervisord"]

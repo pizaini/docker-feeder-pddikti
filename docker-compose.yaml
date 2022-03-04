@@ -2,7 +2,7 @@ version: "3.9"
 services:
   feeder:
     image: pizaini/feeder-pddikti:22.2
-    container_name: staitbh-feeder
+    container_name: feeder
     restart: unless-stopped
     tty: true
     environment:
@@ -16,7 +16,7 @@ services:
       - "3003:3003"
   db-pddikti:
     image: postgres:12
-    container_name: staitbh-dbpddikti
+    container_name: dbpddikti
     restart: unless-stopped
     tty: true
     ports:
