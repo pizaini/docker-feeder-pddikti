@@ -1,9 +1,8 @@
 version: "3.9"
 services:
-  feeder_pddikti:
-#    image: pizaini/feeder-pddikti:22.2.1
-    image: pizaini/feeder-neo
-    container_name: feeder_pddikti_new
+  feeder:
+    image: pizaini/feeder-pddikti:22.2
+    container_name: staitbh-feeder
     restart: unless-stopped
     tty: true
     environment:
@@ -15,11 +14,9 @@ services:
     ports:
       - "8100:8100"
       - "3003:3003"
-
-  #PgSQL Service
   db-pddikti:
     image: postgres:12
-    container_name: db-pddikti
+    container_name: staitbh-dbpddikti
     restart: unless-stopped
     tty: true
     ports:
