@@ -11,7 +11,7 @@ Docker hub versi 22.2 adalah feeder versi NEO
 2. Copy directory 'nginx' yang disediakan oleh installer. Letakkan pada directory volume data database Nginx config. Misalnya `/home/pizaini/docker-volume/feeder/nginx`
 
 ## Docker compose
-See [docker-compose.yaml](https://github.com/pizaini/docker-feeder-pddikti/blob/master/README.md)
+See [docker-compose.yaml](https://github.com/pizaini/docker-feeder-pddikti/blob/master/docker-compose.yaml)
 
 ## Cara menggunakan
 Run docker compose
