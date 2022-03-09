@@ -6,20 +6,26 @@ services:
     restart: unless-stopped
     tty: true
     environment:
-      SERVICE_NAME: app
-      SERVICE_TAGS: prod
+      TZ: "Asia/Jakarta"
+      SERVICE_NAME: "app"
+      SERVICE_TAGS: "1.0.2"
+      PGHOST: "localhost"
+      PGPORT: 54333
     volumes:
       - /home/pizaini/docker-volume/feeder-neo/nginx/nginx.conf:/etc/nginx/nginx.conf
       - /home/pizaini/docker-volume/feeder-neo/prefill_pddikti:/prefill_pddikti
+      - /home/pizaini/docker-volume/feeder-neo/app:/app
     ports:
       - "8100:8100"
       - "3003:3003"
+    depends_on:
+      - db-pddikti
   db-pddikti:
     image: postgres:12
     container_name: dbpddikti
     restart: unless-stopped
     tty: true
     ports:
-      - "54333:54333"
+      - "127.0.0.1:54333:54333"
     volumes:
       - /home/pizaini/docker-volume/feeder-neo/pgsql/data:/var/lib/postgresql/data

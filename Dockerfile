@@ -1,5 +1,8 @@
-FROM ubuntu:latest
-
+FROM ubuntu:20.04
+RUN apt-get update && \
+    apt-get install -yq tzdata && \
+    ln -fs /usr/share/zoneinfo/Asia/Jakarta /etc/localtime && \
+    dpkg-reconfigure -f noninteractive tzdata
 RUN apt-get update \
     && apt-get install -y --allow-unauthenticated \
         curl \
@@ -7,7 +10,7 @@ RUN apt-get update \
         nginx \
         supervisor
 
-RUN curl -sL https://deb.nodesource.com/setup_10.x | bash - && apt-get install -yq nodejs
+RUN curl -sL https://deb.nodesource.com/setup_12.x | bash - && apt-get install -yq nodejs
 
 # Clear cache
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
@@ -22,5 +25,4 @@ RUN chown www:www /var/log/supervisor
 
 # USER www
 RUN chmod +x /app/server-linux
-
 CMD ["/usr/bin/supervisord"]
