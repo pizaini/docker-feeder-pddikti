@@ -3,8 +3,9 @@ Hadirnya Feeder PDDIKTI versi NEO merupakan terobosan yang patut diapresisasi. S
 
 Di repo ini, saya hanya menghadirkan Feeder PDDIKTI yang versi dockernya tidak tersedia di docker hub. Sekaligus ingin berbagi apa yang kami lakukan agar penggunaan Feeder Neo dapat berjalan dengan lebih baik.
 
-## Versi Neo, versi 22.2.x.
-Docker hub versi 22.2 adalah feeder versi NEO
+## Versi Neo, versi 22.x.y.
+Docker hub versi 22..x.y adalah feeder versi NEO. Misalnya, versi feeder v1.0.3, maka docker TAG adalah 22.103.x.
+Dimana 22 menyatakan tahun 2022 sebagai tahun rilis feeder Neo. 103 adalah versi aplikasi yang dirilis, dan x adalah kode build docker image ini. 
 
 ## Persiapan
 Copy directory 'pgsql' yang disediakan oleh installer. Letakkan pada directory volume data database PostgreSQL. Misalnya `/home/pizaini/docker-volume/feeder/pgsql`
