@@ -40,16 +40,12 @@ Optional jika diperlukan
 `chown www:www -R /app`
 
 ## SSL
-Secara default, docker pddikti tidak menyertakan pengaturan HTTPS. Padahal ini SANGAT PENTING menjaga kerahasiaan akun PDDIKTI. Akun yg digunakan di Feeder biasanya AKUN ADMINISTRATOR Perguruan Tinggi. Bayangkan jika akun tersebut diketahui orang lain dan masuk ke sistem penting PDDIKTI seperti Feeder dan PDDIKTI ADMIN. Gak kebayang saya, sama seperti pencurian kartu ATM, hehe...
+Secara default, docker pddikti tidak menyertakan pengaturan HTTPS. Padahal ini SANGAT PENTING menjaga kerahasiaan akun PDDIKTI. Akun yg digunakan di Feeder biasanya AKUN ADMINISTRATOR Perguruan Tinggi. Bayangkan jika akun tersebut diketahui orang lain dan masuk ke sistem penting PDDIKTI seperti Feeder dan PDDIKTI ADMIN. Gak kebayang saya, sama seperti pencurian kartu ATM beserta PIN nya, hehe...
 
 Untuk mengatur HTTPS/SSL silakan modifikasi file `nginx.conf`. Anda juga bisa menggunakan reverse proxy.
 
 ## Custom port
 Secara default, feeder docker membuka port 8100 dan 3003 dari host server. Dan URL menjadi `https://namadomain.ac.id:8100` dan alamat API `https://namadomain.ac.id:8100`. Nah, di repo ini, kita bisa menggunakan custom port misalnya dengan mengambalikan port HTTPS ke 443 baik feeder web maupun API. Sehingga URL menjadi `https://namadomain.ac.id` untuk web feeder dan `https://namadomain.ac.id/ws`. Lebih formal, bukan?
-
-Caranya dengan mengubah nama (rename) file `/home/pizaini/docker-volume/feeder-neo/app/public/index-custom.html` menjadi `/home/pizaini/docker-volume/feeder-neo/app/public/index.html`
-
-Namun jika tidak menggunakan 'bind volume' pada docker compose silakan masuk ke container `docker exec -ti feeder_pddikti` lalu rename file `/app/index-custom.html` menjadi `/app/index.html`
 
 Anda juga harus modifikasi file `nginx.conf` agar menyesuaikan port 8100 dan 3003 ke port 443. 
 
