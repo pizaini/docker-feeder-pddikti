@@ -4,7 +4,7 @@ Hadirnya Feeder PDDIKTI versi NEO merupakan terobosan yang patut diapresisasi. S
 Di repo ini, saya hanya menghadirkan Feeder PDDIKTI yang versi dockernya tidak tersedia di docker hub. Sekaligus ingin berbagi apa yang kami lakukan agar penggunaan Feeder Neo dapat berjalan dengan lebih baik.
 
 ## Latest version
-v22.106.2 = v1.0.6b
+v22.120.1 = v1.2.0
 
 ## Versi Neo, versi 22.x.y.
 Docker hub versi 22..x.y adalah feeder versi NEO. Misalnya, versi feeder v1.0.3, maka docker TAG adalah 22.103.x.
