@@ -1,0 +1,7 @@
+{
+    "default_address": "http://localhost:8100",
+    "old_ws_port": 3003,
+    "new_ws_port": 3003,
+    "is_customize": false,
+    "rebuild": false
+}
