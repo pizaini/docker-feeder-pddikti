@@ -20,9 +20,14 @@ RUN useradd -u 1000 -ms /bin/bash -g www www
 
 COPY --chown=www:www . .
 
+#Copy nginx config
+COPY nginx/nginx.conf /etc/nginx/nginx.conf
+
 RUN mkdir -p /var/log/supervisor
 RUN chown www:www /var/log/supervisor
 
-# USER www
+# Make executeable
+RUN chmod +x /app/server-linux
 
+#run
 CMD ["/usr/bin/supervisord"]
