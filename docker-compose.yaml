@@ -1,14 +1,14 @@
 version: "3.9"
 services:
   feeder:
-    image: pizaini/feeder-pddikti:22.103
+    image: pizaini/feeder-pddikti:25.300
     container_name: feeder
     restart: unless-stopped
     tty: true
     environment:
       TZ: "Asia/Jakarta"
       SERVICE_NAME: "app"
-      SERVICE_TAGS: "1.0.3"
+      SERVICE_TAGS: "3.0.0"
       PGHOST: db-pddikti
       PGPORT: 54333
 #      Volume bersifat optional. Silakan uncomment jika diperlukan
